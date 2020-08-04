@@ -85,6 +85,8 @@ char *add_float(char *dest, float value)
   byte len = strlen(buf);
   strncpy(temp,buf,len);
   temp = temp+len;
+  *temp = ',';
+  temp++;
   return temp;
 }
 
