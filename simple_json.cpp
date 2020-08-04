@@ -58,21 +58,36 @@ char *add_long(char *dest, long value)
   temp = temp + len;
   *temp = ',';
   temp++;
+  // Serial.print(F("long Diff: "));Serial.println(temp-dest);
   return temp;
 }
+
 
 char *add_float(char *dest, float value)
 {
   char *temp = dest;
-  char buffer[12];
-  dtostrf(value,0,2,buffer);
-  uint8_t len = strlen(buffer);
-  strncat(temp, buffer, len);
-  temp = temp + len;
-  *temp = ',';
-  temp++;
+  // Serial.print(F("Float in: "));Serial.println(value);
+  
+  // char buffer[12];
+  // dtostrf(value,3,2,buffer);
+  // uint8_t len = strlen(buffer);
+  // Serial.print(F("Len: "));Serial.println(len);
+  // strncat(temp, buffer, len);
+  // // strcat(temp, buffer);
+  // Serial.print(F("Float out: "));Serial.println(buffer);
+  // temp = temp + len;
+  // *temp = ',';
+  // temp++;
+  // Serial.print(F("Diff: "));Serial.println(temp-dest);
+
+  char buf[10];
+  dtostrf(value, 0, 2, buf);  //(var, min width, precision, buffer)
+  byte len = strlen(buf);
+  strncpy(temp,buf,len);
+  temp = temp+len;
   return temp;
 }
+
 char *add_str(char *dest, const char *source)
 {
   uint8_t len = strlen(source);
