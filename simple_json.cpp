@@ -26,7 +26,7 @@ char *enquote(char *dest, const char *source)
   char *temp = dest;
   *temp = '\"';
   temp++;
-  strncat(temp, source, len);
+  strncpy(temp, source, len);
   temp = temp + len;
   *temp = '\"';
   temp++;
@@ -41,7 +41,7 @@ char *add_int(char *dest, int value)
   char buffer[12];
   itoa(value, buffer, 10);
   uint8_t len = strlen(buffer);
-  strncat(temp, buffer, len);
+  strncpy(temp, buffer, len);
   temp = temp + len;
   *temp = ',';
   temp++;
@@ -54,14 +54,26 @@ char *add_long(char *dest, long value)
   char buffer[12];
   ltoa(value, buffer, 10);
   uint8_t len = strlen(buffer);
-  strncat(temp, buffer, len);
+  strncpy(temp, buffer, len);
   temp = temp + len;
   *temp = ',';
   temp++;
   // Serial.print(F("long Diff: "));Serial.println(temp-dest);
   return temp;
 }
-
+char *add_ulong(char *dest, unsigned long value)
+{
+  char *temp = dest;
+  char buffer[12];
+  ultoa(value, buffer, 10);
+  uint8_t len = strlen(buffer);
+  strncpy(temp, buffer, len);
+  temp = temp + len;
+  *temp = ',';
+  temp++;
+  // Serial.print(F("long Diff: "));Serial.println(temp-dest);
+  return temp;
+}
 
 char *add_float(char *dest, float value)
 {
@@ -96,7 +108,7 @@ char *add_str(char *dest, const char *source)
   char *temp = dest;
   *temp = '\"';
   temp++;
-  strncat(temp, source, len);
+  strncpy(temp, source, len);
   temp = temp + len;
   *temp = '\"';
   temp++;

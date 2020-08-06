@@ -7,6 +7,7 @@ char *enquote(char *dest, const char *source);
 
 char *add_int(char *dest, int value);
 char *add_long(char *dest, long value);
+char *add_ulong(char *dest, unsigned long value);
 char *add_float(char *dest, float value);
 char *add_str(char *dest, const char *source);
 
