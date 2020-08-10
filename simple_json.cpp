@@ -75,7 +75,7 @@ char *add_ulong(char *dest, unsigned long value)
   return temp;
 }
 
-char *add_float(char *dest, float value)
+char *add_float(char *dest, float value, byte precision)
 {
   char *temp = dest;
   // Serial.print(F("Float in: "));Serial.println(value);
@@ -93,7 +93,7 @@ char *add_float(char *dest, float value)
   // Serial.print(F("Diff: "));Serial.println(temp-dest);
 
   char buf[10];
-  dtostrf(value, 0, 2, buf);  //(var, min width, precision, buffer)
+  dtostrf(value, 0, precision, buf);  //(var, min width, precision, buffer)
   byte len = strlen(buf);
   strncpy(temp,buf,len);
   temp = temp+len;
